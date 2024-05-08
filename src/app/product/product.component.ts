@@ -14,9 +14,7 @@ export class ProductComponent implements OnInit {
   public layout: 'grid' | 'list'='grid';
   public sortKey: string = "";
   public sortOptions: string []=['price'];
-  public searchValue:string;
-  public sortField:string="";
-  public sortOrder:number;
+  public searchValue:string= "";
 
   constructor(private readonly productService: ProductService) { }
 
@@ -27,12 +25,26 @@ export class ProductComponent implements OnInit {
 
     this.productService.getProductItems().subscribe(items=>{
       this.productItems=items;
-    });
-    
+    });    
   }
 
-  onSortChange(){        
-    this.productService.sortProductItems();       
+  onSortChange(){                
+    this.productService.sortProductItems().subscribe(itemes=>this.productItems=itemes);               
+  }
+
+  onSearchKeyupEnter(){        
+    if(this.searchValue.trim().length!=0){
+      this.productService.searchProductItems(this.searchValue).subscribe(itemes=>{
+        this.productItems=itemes;
+      }); 
+    }         
+  }
+
+  onSearchChange(){    
+    
+    if(this.searchValue.length==0){
+      this.productService.getProductItems().subscribe(items=>this.productItems=items);      
+    }
   }
 
   
