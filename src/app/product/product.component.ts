@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from './product.model';
-import { PRODUCTS_ITEMS } from './PRODUCTS_ITEMS';
 import { ProductService } from './product.service';
 
 @Component({
@@ -10,26 +9,30 @@ import { ProductService } from './product.service';
 })
 export class ProductComponent implements OnInit {
 
-  public productItems: Product[]=PRODUCTS_ITEMS;
+  public productItems: Product[];
   products:Product[];
   public layout: 'grid' | 'list'='grid';
-  public sortKey: string []=['pricek','namek','kcategory'];
-  public sortOptions: string []=['price','name','category'];
+  public sortKey: string = "";
+  public sortOptions: string []=['price'];
   public searchValue:string;
-  
+  public sortField:string="";
+  public sortOrder:number;
+
   constructor(private readonly productService: ProductService) { }
 
   ngOnInit(): void {
-     
-    this.productService.getProducts().subscribe(items=>{
-      //console.log("prods of prod com: "+JSON.stringify(items));
+    this.productService.getProducts().subscribe(items=>{      
       this.products=items;
+    });
+
+    this.productService.getProductItems().subscribe(items=>{
+      this.productItems=items;
     });
     
   }
 
-  onSortChange(event:Event){
-
+  onSortChange(){        
+    this.productService.sortProductItems();       
   }
 
   

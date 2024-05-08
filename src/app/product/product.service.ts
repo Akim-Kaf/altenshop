@@ -1,16 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { Product, ProductDto } from './product.model';
+import { PRODUCTS_ITEMS } from './PRODUCTS_ITEMS';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private showProducts: boolean;
+  public productItems: Product[]=PRODUCTS_ITEMS;
   constructor(private httpClient:HttpClient) { 
-    this.showProducts=false;
   }
 
   public getProducts():Observable<Product[]>{
@@ -18,13 +18,13 @@ export class ProductService {
       .get<ProductDto>('./assets/products.json').pipe(map(e=>e.data));
 
   }
-
-  public setShowProducts(value:boolean):void{
-    this.showProducts=value;
+  
+  public getProductItems():Observable<Product []>{
+    return of(this.productItems);
   }
 
-  public getShowProducts():boolean{
-    return this.showProducts;
+  public sortProductItems(){
+      return of(this.productItems.sort((a,b)=>{return a.price-b.price}));
   }
 
 }

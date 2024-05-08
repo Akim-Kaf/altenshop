@@ -35,13 +35,7 @@ export class SidenavComponent implements OnInit {
   }
 
   public onSidenavItemClick(item: SidenavItem, event: Event): void {
-    event.preventDefault();
-    
-    if(item.id==='Menu-item-products'){
-      this.productService.setShowProducts(true);
-    }else{
-      this.productService.setShowProducts(false);
-    }
+    event.preventDefault();        
 
     if (this.sidenavService.getMobileDisplay() && !this.sidenavService.getExpanded()) {
       this.sidenavService.setExpanded(true);

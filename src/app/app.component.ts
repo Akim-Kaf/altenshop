@@ -30,11 +30,7 @@ export class AppComponent implements OnInit {
   }
   get getPinned(): boolean {
     return this.sidenavService.getPinned();
-  }
-
-  get getShowProducts():boolean{
-    return this.productService.getShowProducts();
-  }
+  }  
 
   ngOnInit():void {
     this.productService.getProducts().subscribe(items=>{

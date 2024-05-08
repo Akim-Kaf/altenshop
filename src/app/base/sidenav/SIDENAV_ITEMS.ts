@@ -2,7 +2,7 @@ import { SidenavItem } from "app/base/sidenav/sidenav.model";
 
 export const SIDENAV_ITEMS: SidenavItem[] = [
   {
-    id: 'Menu-item-products',
+    id: 'products',
     labels: {
       en: "Products",
       fr: "Produits"
@@ -12,7 +12,7 @@ export const SIDENAV_ITEMS: SidenavItem[] = [
 
   },
   {
-    id: 'Menu-item-admin',
+    id: 'Admin',
     labels: {
       en: "Admin",
       fr: "Admin"
