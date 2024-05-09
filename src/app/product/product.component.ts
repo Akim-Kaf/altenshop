@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from './product.model';
 import { ProductService } from './product.service';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-product',
@@ -13,8 +14,10 @@ export class ProductComponent implements OnInit {
   products:Product[];
   public layout: 'grid' | 'list'='grid';
   public sortKey: string = "";
-  public sortOptions: string []=['price'];
+  public sortOptions: SelectItem[];
   public searchValue:string= "";
+  sortOrder: number;
+  sortField: string;  
 
   constructor(private readonly productService: ProductService) { }
 
@@ -25,10 +28,26 @@ export class ProductComponent implements OnInit {
 
     this.productService.getProductItems().subscribe(items=>{
       this.productItems=items;
-    });    
+    });  
+
+    this.sortOptions = [
+      {label: 'Price High to Low', value: '!price'},
+      {label: 'Price Low to High', value: 'price'}
+    ];  
   }
 
-  onSortChange(){                
+  onSortChange(event){
+    
+    let value = event.value;
+
+    if (value.indexOf('!') === 0) {
+        this.sortOrder = -1;
+        this.sortField = value.substring(1, value.length);
+    }
+    else {
+        this.sortOrder = 1;
+        this.sortField = value;
+    }
     this.productService.sortProductItems().subscribe(itemes=>this.productItems=itemes);               
   }
 
