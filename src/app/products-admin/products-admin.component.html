@@ -1,0 +1,70 @@
+<div>
+    
+    <p-table #dt1 [value]="productItems" [(selection)]="selectedProducts" dataKey="id" editMode="row" styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '60rem'}">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <button pButton label="New" class="mr-2" [style]="{'background-color':'green'}" icon="pi pi-plus" ></button>
+                <button pButton label="Delete" [disabled]="true" icon="pi pi-trash" ></button>                                
+                <button type="button" pButton pRipple icon="pi pi-cog"  class="p-button-info ml-auto" [style]="{'background-color':'blue'}" pTooltip="Selection Only" tooltipPosition="bottom"></button>
+                
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:5%">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="code" style="width:40%">Code <p-sortIcon field="code"></p-sortIcon></th>
+                <th pSortableColumn="name" style="width:40%">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th style="width:15%">Action </th>                
+            </tr>
+            <tr>                
+                    <th> </th>
+                    <th>
+                        <input pInputText type="text" #codeInput (input)="dt1.filter(codeInput.value, 'code', 'contains')" [value]="$any(dt1.filters['code'])?.value" placeholder="Search by Code" class="w-full">
+                    </th>
+                    <th>
+                        <input pInputText type="text" #nameInput (input)="dt1.filter(nameInput.value, 'name', 'contains')" [value]="$any(dt1.filters['name'])?.value" placeholder="Search by Name" class="w-full">
+                    </th>
+                    <th>  </th>                
+            </tr>
+        </ng-template>
+        
+        <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">                                                        
+                <tr [pEditableRow]="product" [ngClass]="{'row-impaire-id': product.id % 2 != 0}">
+                    <td>
+                        <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                    </td>
+
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="product.code">                                
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.code}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="product.name" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{product.name}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                                        
+                    <td>
+                        <div class="flex align-items-center justify-content-center gap-2">
+                            <button  pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(product)" class="p-button-rounded p-button-text"></button>
+                            <button  pButton pRipple type="button" pCancelEditableRow icon="pi pi-trash" (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                            <!--<button  pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(product)" class="p-button-rounded p-button-text p-button-success mr-2"></button>-->                            
+                        </div>
+                    </td>                    
+                </tr>                                        
+        </ng-template>
+    </p-table>
+</div>

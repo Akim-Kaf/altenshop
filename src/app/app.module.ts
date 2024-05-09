@@ -9,8 +9,8 @@ import { AppComponent } from 'app/app.component';
 import { BaseModule } from 'app/base/base.module';
 import { SharedModule } from 'app/shared/shared.module';
 import { ProductModule } from './product/product.module';
-import { DataViewModule } from 'primeng/dataview';
 import { ProductService } from './product/product.service';
+import { ProductsAdminModule } from './products-admin/products-admin.module';
 
 
 
@@ -25,9 +25,9 @@ import { ProductService } from './product/product.service';
     BrowserAnimationsModule,
     SharedModule,
     BaseModule,
-    ProductModule,
-    DataViewModule,
-    HttpClientModule
+    ProductModule,    
+    HttpClientModule,
+    ProductsAdminModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'en' },

@@ -48,7 +48,7 @@ export class ProductComponent implements OnInit {
         this.sortOrder = 1;
         this.sortField = value;
     }
-    this.productService.sortProductItems().subscribe(itemes=>this.productItems=itemes);               
+    //this.productService.sortProductItems().subscribe(itemes=>this.productItems=itemes);               
   }
 
   onSearchKeyupEnter(){        
