@@ -9,11 +9,7 @@ import { AppComponent } from 'app/app.component';
 import { BaseModule } from 'app/base/base.module';
 import { SharedModule } from 'app/shared/shared.module';
 import { ProductModule } from './product/product.module';
-import { ProductService } from './product/product.service';
-import { ProductsAdminModule } from './products-admin/products-admin.module';
-
-
-
+import { ProductService } from './product/product/product.service';
 
 
 @NgModule({
@@ -27,7 +23,6 @@ import { ProductsAdminModule } from './products-admin/products-admin.module';
     BaseModule,
     ProductModule,    
     HttpClientModule,
-    ProductsAdminModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'en' },

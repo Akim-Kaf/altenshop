@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { SidenavItem } from 'app/base/sidenav/sidenav.model';
 import { SidenavService } from 'app/base/sidenav/sidenav.service';
 import { SIDENAV_ITEMS } from 'app/base/sidenav/SIDENAV_ITEMS';
-import { ProductService } from '../../product/product.service';
+import { ProductService } from '../../product/product/product.service';
 
 @Component({
   selector: 'app-sidenav',

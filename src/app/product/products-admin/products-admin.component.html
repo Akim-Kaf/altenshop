@@ -1,6 +1,6 @@
 <div>
     
-    <p-table #dt1 [value]="productItems" [(selection)]="selectedProducts" dataKey="id" editMode="row" styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '60rem'}">
+    <p-table #dt [value]="productItems" [(selection)]="selectedProducts" dataKey="id" editMode="row" styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '60rem'}">
         <ng-template pTemplate="caption">
             <div class="flex">
                 <button pButton label="New" class="mr-2" [style]="{'background-color':'green'}" icon="pi pi-plus" ></button>
@@ -21,10 +21,10 @@
             <tr>                
                     <th> </th>
                     <th>
-                        <input pInputText type="text" #codeInput (input)="dt1.filter(codeInput.value, 'code', 'contains')" [value]="$any(dt1.filters['code'])?.value" placeholder="Search by Code" class="w-full">
+                        <input pInputText type="text" #codeInput (input)="dt.filter(codeInput.value, 'code', 'contains')" [value]="$any(dt.filters['code'])?.value" placeholder="Search by Code" class="w-full">
                     </th>
                     <th>
-                        <input pInputText type="text" #nameInput (input)="dt1.filter(nameInput.value, 'name', 'contains')" [value]="$any(dt1.filters['name'])?.value" placeholder="Search by Name" class="w-full">
+                        <input pInputText type="text" #nameInput (input)="dt.filter(nameInput.value, 'name', 'contains')" [value]="$any(dt.filters['name'])?.value" placeholder="Search by Name" class="w-full">
                     </th>
                     <th>  </th>                
             </tr>

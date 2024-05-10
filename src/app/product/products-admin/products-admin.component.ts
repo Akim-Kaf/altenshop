@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PRODUCTS_ITEMS } from 'app/product/PRODUCTS_ITEMS';
-import { Product } from 'app/product/product.model';
+import { Product } from 'app/product/product/product.model';
+import { ProductsAdminService } from './products-admin.service';
 
 @Component({
   selector: 'app-products-admin',
@@ -8,12 +8,14 @@ import { Product } from 'app/product/product.model';
   styleUrls: ['./products-admin.component.scss']
 })
 export class ProductsAdminComponent implements OnInit {
-  public productItems: Product[]=PRODUCTS_ITEMS;
+  
+  public productItems: Product[];
   selectedProducts: Product[];
   
-  constructor() { }
+  constructor(private readonly productAdminService:ProductsAdminService) { }
 
   ngOnInit(): void {
+    this.productAdminService.getProducts().subscribe((itemes)=>this.productItems=itemes);
   }
 
   onRowEditInit(product:Product){

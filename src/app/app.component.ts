@@ -1,9 +1,8 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
 import { SidenavService } from 'app/base/sidenav/sidenav.service';
-import { ProductService } from './product/product.service';
-import { Product } from './product/product.model';
+import { Product } from './product/product/product.model';
+import { ProductsAdminService } from './product/products-admin/products-admin.service';
 
 const TRANSPARENT_NAV_PAGES = [ 'login' ];
 
@@ -16,11 +15,11 @@ export class AppComponent implements OnInit {
 
   @HostBinding('class.transparent') transparent = false;
 
-  products:Product[];
+  //products:Product[];
   constructor(
     private readonly router: Router,
     private readonly sidenavService: SidenavService,
-    private readonly productService: ProductService,
+    private readonly productsAdminService: ProductsAdminService ,
   ) {
    
   }
@@ -33,9 +32,10 @@ export class AppComponent implements OnInit {
   }  
 
   ngOnInit():void {
-    this.productService.getProducts().subscribe(items=>{
+    /*
+    this.productsAdminService.getProducts().subscribe(items=>{
       //console.log("prods:"+JSON.stringify(items));
-      this.products=items;
-    });
+    //  this.products=items;
+    });*/
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from './product.model';
-import { ProductService } from './product.service';
 import { SelectItem } from 'primeng/api';
+import { ProductsAdminService } from 'app/product/products-admin/products-admin.service';
 
 @Component({
   selector: 'app-product',
@@ -19,16 +19,18 @@ export class ProductComponent implements OnInit {
   sortOrder: number;
   sortField: string;  
 
-  constructor(private readonly productService: ProductService) { }
+  constructor(private readonly productAdminService: ProductsAdminService ) { }
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(items=>{      
+    this.productAdminService.getProducts().subscribe(items=>{      
       this.products=items;
     });
 
-    this.productService.getProductItems().subscribe(items=>{
+    /*
+    this.productAdminService.getProductItems().subscribe(items=>{
       this.productItems=items;
-    });  
+    });
+    */  
 
     this.sortOptions = [
       {label: 'Price High to Low', value: '!price'},
@@ -48,22 +50,23 @@ export class ProductComponent implements OnInit {
         this.sortOrder = 1;
         this.sortField = value;
     }
-    //this.productService.sortProductItems().subscribe(itemes=>this.productItems=itemes);               
+    //this.productAdminService.sortProductItems().subscribe(itemes=>this.productItems=itemes);               
   }
 
   onSearchKeyupEnter(){        
     if(this.searchValue.trim().length!=0){
-      this.productService.searchProductItems(this.searchValue).subscribe(itemes=>{
+      this.productAdminService.searchProductItems(this.searchValue).subscribe(itemes=>{
         this.productItems=itemes;
       }); 
     }         
   }
 
   onSearchChange(){    
-    
+    /*
     if(this.searchValue.length==0){
-      this.productService.getProductItems().subscribe(items=>this.productItems=items);      
+      this.productAdminService.getProducts().subscribe(items=>this.productItems=items);      
     }
+    */
   }
 
   
