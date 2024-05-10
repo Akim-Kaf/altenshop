@@ -1,4 +1,5 @@
 import { registerLocaleData } from '@angular/common';
+import { FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import localeEn from '@angular/common/locales/en';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -12,10 +13,11 @@ import { ProductModule } from './product/product.module';
 import { ProductService } from './product/product/product.service';
 
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    BrowserModule,    
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,

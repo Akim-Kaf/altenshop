@@ -1,0 +1,108 @@
+<form *ngIf="product" (ngSubmit)="onSubmit()" #productForm="ngForm" class="form-container">
+    
+        <div class="card">
+            <!-- product code -->
+            <div >
+                <label for="name">Code</label>
+                <input type="text" class="form-control" id="code"
+                        required
+                        pattern="^[a-zA-Z0-9àéèç]{1,25}$"
+                    [(ngModel)]="product.code" name="name"
+                    #code="ngModel">
+        
+                <div [hidden]="name.valid || name.pristine">
+                    Name of pruduct required (1-25).
+                </div>
+            </div>
+
+            <!-- product name -->
+            <div >
+                <label for="name">Nom</label>
+                <input type="text" class="form-control" id="name"
+                        required
+                        pattern="^[a-zA-Z0-9àéèç]{1,25}$"
+                    [(ngModel)]="product.name" name="name"
+                    #name="ngModel">
+        
+                <div [hidden]="name.valid || name.pristine"
+                    class="card-panel red accent-1">
+                    Name of product required (1-25).
+                </div>
+            </div>
+
+            <!-- product description -->
+            <div class="form-group">
+                <label for="name">description</label>
+                <input type="text" class="form-control" id="name"                        
+                    [(ngModel)]="product.description" name="descript"
+                    #descript="ngModel">                        
+            </div>
+
+            <!-- product price -->
+            <div >
+                <label for="hp">Price</label>
+                <input type="number" class="form-control" id="hp" required [(ngModel)]="product.price" name="price">                
+            </div>
+
+            <!-- product quatity -->
+            <div >
+                <label for="hp">Quantity</label>
+                <input type="number" class="form-control" id="hp" required [(ngModel)]="product.quantity" name="price">                
+            </div>            
+            
+            <!-- inventoryStatus -->
+            <div >
+                <label for="name">inventoryStatus</label>
+                <input type="text"  id="inventoryStatus"                        
+                    [(ngModel)]="product.description" name="inventoryStatus"
+                    #inventoryStatus="ngModel">                        
+            </div>
+
+            <!-- inventoryStatus -->
+            <div >
+                <label for="name">category</label>
+                <input type="text" class="form-control" id="inventoryStatus"                        
+                    [(ngModel)]="product.description" name="inventoryStatus"
+                    #inventoryStatus="ngModel">                        
+            </div>
+
+            <!-- product picture -->
+            <div *ngIf="isAddForm" >
+                <label for="picture">Image</label>
+                <input type="url" class="form-control" id="picture"                        
+                        [(ngModel)]="product.image" name="picture"
+                        #image="ngModel">                        
+            </div>                                        
+        
+            <!-- product Category -->
+            <form >
+                <label for="types">Category</label>
+                <select id="cats">
+                    <option *ngFor="let category of categorys" value="{{category}}">                                                                    
+                        {{category}}
+                    </option>    
+                </select>            
+            </form>
+
+            <!-- product cp -->
+            <div >
+                <label for="cp">Rating</label>
+                <input type="number" class="form-control" id="cp"                                                
+                    [(ngModel)]="product.rating" name="rat">                
+            </div>
+    
+          <!-- Submit button -->          
+          <div >
+            <button type="submit">Submit</button>
+          </div>
+    
+        </div>
+      
+</form>
+<div>
+    <h3 *ngIf="!product" >
+        Redire hear
+        <!--<app-loader></app-loader>-->
+      </h3>
+</div>
+  
