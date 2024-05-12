@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, map, of, tap, catchError } from 'rxjs';
 import { Product, ProductDto } from '../product/product.model';
-//import { PRODUCTS_ITEMS } from '../product/PRODUCTS_ITEMS';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -11,20 +10,26 @@ export class ProductsAdminService {
   
   private productItems: Product[];
   
-  // url to connect to the a api
-  //./assets/products.json
-  //private apiUrl:string='../product/PRODUCTS_ITEMS.ts';
-  private apiUrl:string='./assets/products.json';
+  //url to use the products.json file as data source
+  //private apiUrl:string='./assets/products.json';
+  //** url to connect to the a api **
+  private apiUrl='http://localhost:8080/products';
 
   constructor(private httpClient:HttpClient) { 
   }
 
-  public getProducts():Observable<Product[]>{
+  public getProducts():Observable<Product[]>{    
+    if(this.apiUrl.includes("://")){
+      console.log("Call of Api");
+      return this.httpClient
+      .get<Product[]>(this.apiUrl);  
+    }
+    console.log("Use json file as data source");
     return this.httpClient
       .get<ProductDto>(this.apiUrl).pipe(map(e=>e.data));
   }
 
-  public getProductsById(productId:number):Observable<Product|any>{
+  public getProductById(productId:number):Observable<Product|any>{
     return this.httpClient.get<Product>(this.apiUrl+'/'+productId.toString()).pipe(
       tap((response)=>this.log(response)),
       catchError((error)=>this.handleError(error,undefined))

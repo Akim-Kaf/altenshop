@@ -26,8 +26,8 @@ export class ProductsAdminComponent implements OnInit {
     */
   }
 
-  onRowEditSave(product:Product){
-
+  onRowEditSave(){    
+    this.router.navigate(['admin/add/product']);
   }
 
   onRowEditCancel(product:Product,ri:number){

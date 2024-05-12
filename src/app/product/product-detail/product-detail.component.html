@@ -1,0 +1,62 @@
+<div *ngIf="product" class="card">
+      <!-- product code -->
+      <div >
+          <label for="Code">Code</label>          
+              {{product.code}}
+      </div>
+
+      <!-- product name -->
+      <div >
+          <label for="name">Nom</label>
+          {{product.name}}
+      </div>
+
+      <!-- product description -->
+      <div class="form-group">
+          <label for="name">description</label>
+          {{product.description }}
+      </div>
+
+      <!-- product price -->
+      <div >
+          <label for="Price">Price</label>
+          {{product.price}}
+      </div>
+
+      <!-- product quatity -->
+      <div >
+          <label for="Quantity">Quantity</label>
+           {{product.quantity}}
+      </div>            
+      
+      <!-- inventoryStatus -->
+      <div >
+          <label for="inventoryStatus">inventoryStatus</label>
+          {{product.inventoryStatus }}
+      </div>      
+      
+      <!-- product Category -->
+      <div >
+        <label for="Category">Category</label>
+        {{product.category}}
+      </div>                                          
+
+      <!-- product Rating -->
+      <div >
+          <label for="Rating">Rating</label>
+          {{product.rating}}
+      </div>
+
+    <!-- Submit button -->          
+    <div >
+      <button (click)="goToProductAdminList()">Bac to liste</button>
+    </div>
+
+  </div>
+<div>
+<h3 *ngIf="!product" >
+  Loading ...
+  <!--<app-loader></app-loader>-->
+</h3>
+</div>
+
