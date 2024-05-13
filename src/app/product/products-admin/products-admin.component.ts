@@ -19,19 +19,18 @@ export class ProductsAdminComponent implements OnInit {
     this.productAdminService.getProducts().subscribe((itemes)=>this.productItems=itemes);
   }
 
-  onRowEditInit(product:Product){
-    this.router.navigate(['admin/edit/product/',product.id]);
-    /*this.productAdminService.updateProduct(product)
-        .subscribe(() => this.router.navigate(['/product', product.id]));
-    */
+  onRowEdit(product:Product){
+    this.router.navigate(['admin/edit/product/',product.id]);    
   }
 
-  onRowEditSave(){    
+  onNew(){    
     this.router.navigate(['admin/add/product']);
   }
 
-  onRowEditCancel(product:Product,ri:number){
-
+  onRowDelete(product:Product){    
+    this.productAdminService.deleteProduct(product.id).subscribe((e)=>{      
+      this.productItems=this.productItems.filter((e)=>e.id!=product.id);      
+    });
   }
 
 

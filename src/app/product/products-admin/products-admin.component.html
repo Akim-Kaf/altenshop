@@ -3,7 +3,7 @@
     <p-table #dt [value]="productItems" [(selection)]="selectedProducts" dataKey="id"  styleClass="p-datatable-gridlines" [tableStyle]="{'min-width': '60rem'}">
         <ng-template pTemplate="caption">
             <div class="flex">
-                <button pButton (click)="onRowEditSave()"  label="New" class="mr-2" [style]="{'background-color':'green'}" icon="pi pi-plus" ></button>
+                <button pButton (click)="onNew()"  label="New" class="mr-2" [style]="{'background-color':'green'}" icon="pi pi-plus" ></button>
                 <button pButton label="Delete" [disabled]="true" icon="pi pi-trash" ></button>                                
                 <button type="button" pButton pRipple icon="pi pi-cog"  class="p-button-info ml-auto" [style]="{'background-color':'blue'}" pTooltip="Selection Only" tooltipPosition="bottom"></button>
                 
@@ -46,9 +46,8 @@
                                         
                     <td>
                         <div class="flex align-items-center justify-content-center gap-2">
-                            <button  pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(product)" class="p-button-rounded p-button-text"></button>
-                            <button  pButton pRipple type="button" pCancelEditableRow icon="pi pi-trash" (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
-                            <!--<button  pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(product)" class="p-button-rounded p-button-text p-button-success mr-2"></button>-->                            
+                            <button  pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEdit(product)" class="p-button-rounded p-button-text"></button>
+                            <button  pButton pRipple type="button" pCancelEditableRow icon="pi pi-trash" (click)="onRowDelete(product)" class="p-button-rounded p-button-text p-button-danger"></button>                            
                         </div>
                     </td>                    
                 </tr>                                        
