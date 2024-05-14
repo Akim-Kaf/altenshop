@@ -11,9 +11,9 @@ export class ProductsAdminService {
   private productItems: Product[];
   
   //url to use the products.json file as data source
-  private apiUrl:string='./assets/products.json';
+  //private apiUrl:string='./assets/products.json';
   //** url to connect to the a api **
-  //private apiUrl='http://localhost:8080/products';
+  private apiUrl='http://localhost:8080/products';
 
   constructor(private httpClient:HttpClient) { 
   }

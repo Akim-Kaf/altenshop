@@ -10,8 +10,8 @@
                     [(ngModel)]="product.code" name="code"
                     #code="ngModel">
         
-                <div [hidden]="code.valid || code.pristine">
-                    Code is required( no special char ).
+                <div [hidden]="name.valid || name.pristine">
+                    Code is required(no special chars ).
                 </div>
             </div>
 
@@ -26,7 +26,7 @@
         
                 <div [hidden]="name.valid || name.pristine"
                     class="card-panel red accent-1">
-                    Name is required( no special char ).
+                    Name of product is required .
                 </div>
             </div>
 
@@ -41,13 +41,13 @@
             <!-- product price -->
             <div >
                 <label for="hp">Price</label>
-                <input type="number" class="form-control" id="price" required [(ngModel)]="product.price" name="price">                
+                <input type="number" class="form-control" id="hp" required [(ngModel)]="product.price" name="price">                
             </div>
 
             <!-- product quatity -->
             <div >
                 <label for="hp">Quantity</label>
-                <input type="number" class="form-control" id="quantity" required [(ngModel)]="product.quantity" name="quantity">                
+                <input type="number" class="form-control" id="hp" required [(ngModel)]="product.quantity" name="quantity">                
             </div>            
             
             <!-- inventoryStatus -->

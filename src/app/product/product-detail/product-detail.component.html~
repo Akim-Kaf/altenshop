@@ -49,7 +49,7 @@
 
     <!-- Submit button -->          
     <div >
-      <button (click)="goToProductAdminList()">Back to liste</button>
+      <button (click)="goToProductAdminList()">Bac to liste</button>
     </div>
 
   </div>
