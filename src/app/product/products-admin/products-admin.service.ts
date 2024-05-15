@@ -77,11 +77,23 @@ export class ProductsAdminService {
     );
   }
   
-  /*
-  public getProductItems():Observable<Product []>{
-    this.productItems=PRODUCTS_ITEMS;        
-    return of(this.productItems);
-  }*/
+  public deleteProducts(products: Product[]):Observable<Product>{
+  	  
+  	  const httpOptions={
+      headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+    };
+    
+     const productsDto={
+     	data:products     
+     }
+
+    return this.httpClient.post<Product >(this.apiUrl+"/darray", productsDto, httpOptions).pipe(
+      tap((response)=>this.log(response)),
+      catchError((error)=>this.handleError(error,null))
+    )
+  	  
+  }
+    
 
   public sortProductItems():Observable<Product []>{      
     this.productItems=this.productItems.sort((a,b)=>{return a.price-b.price});
@@ -92,6 +104,7 @@ export class ProductsAdminService {
     this.productItems=this.productItems.filter((item)=>item.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()));
     return of(this.productItems);
   }
+  
 
   private log(response:any){
     console.table(response);

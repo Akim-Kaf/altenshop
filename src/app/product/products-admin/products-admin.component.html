@@ -5,7 +5,7 @@
         <ng-template pTemplate="caption">
             <div class="flex">
                 <button pButton (click)="onNew()"  label="New" class="mr-2" [style]="{'background-color':'green'}" icon="pi pi-plus" ></button>
-                <button pButton label="Delete" [disabled]="true" icon="pi pi-trash" ></button>                                
+                <button pButton (click)="onDeleteSelected()" label="Delete" [disabled]= "!isManySelect" icon="pi pi-trash" ></button>                                
                 <button type="button" pButton pRipple icon="pi pi-cog"  class="p-button-info ml-auto" [style]="{'background-color':'blue'}" pTooltip="Selection Only" tooltipPosition="bottom"></button>
                 
             </div>
@@ -34,7 +34,7 @@
         <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">                                                        
                 <tr [pEditableRow]="product" [ngClass]="{'row-impaire-id': ri % 2 != 0}">
                     <td>
-                        <p-tableCheckbox [value]="product"></p-tableCheckbox>
+                        <p-tableCheckbox [value]="product" (click)="onSelect()"></p-tableCheckbox>
                     </td>
 
                     <td>                        

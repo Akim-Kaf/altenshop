@@ -12,7 +12,6 @@ export class ProductsAdminComponent implements OnInit {
   
   public productItems: Product[];
   selectedProducts: Product[];
-  isManySelect: boolean=false;
   
   constructor(private router:Router ,private readonly productAdminService:ProductsAdminService) { }
 
@@ -26,30 +25,12 @@ export class ProductsAdminComponent implements OnInit {
 
   onNew(){    
     this.router.navigate(['admin/add/product']);
-    
-  }
-  
-  onSelect(){  	
-  	if(this.selectedProducts.length>1){
-  		this.isManySelect=true;
-  	}else{
-  		this.isManySelect=false;
-  	}
   }
 
-  onRowDelete(product:Product){  	
+  onRowDelete(product:Product){    
     this.productAdminService.deleteProduct(product.id).subscribe((e)=>{      
       this.productItems=this.productItems.filter((e)=>e.id!=product.id);      
     });
-  }
-  
-  onDeleteSelected(){  	
-  	this.productAdminService.deleteProducts(this.selectedProducts).subscribe((e)=>{      
-      this.productItems=this.productItems.filter((e)=>this.selectedProducts.indexOf(e)<0);
-      this.selectedProducts=[];
-      this.isManySelect=false;
-    });
-    
   }
 
 
